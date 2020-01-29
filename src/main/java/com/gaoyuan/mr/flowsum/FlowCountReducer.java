@@ -1,4 +1,4 @@
-package com.gaoyuan.flowsum;
+package com.gaoyuan.mr.flowsum;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;

@@ -1,4 +1,4 @@
-package com.gaoyuan.mr;
+package com.gaoyuan.mr.wordcount;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

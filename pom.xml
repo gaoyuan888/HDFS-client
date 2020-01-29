@@ -57,7 +57,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.gaoyuan.mr.WordcountDriver</mainClass>
+                            <mainClass>com.gaoyuan.mr.wordcount.WordcountDriver</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
