@@ -22,7 +22,7 @@ import java.io.IOException;
 public class KVTextDriver {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-
+        args =new String[]{"e:/bigData/input1","e:/bigData/out1"};
         Configuration conf = new Configuration();
         // 设置切割符
         conf.set(KeyValueLineRecordReader.KEY_VALUE_SEPERATOR, " ");
