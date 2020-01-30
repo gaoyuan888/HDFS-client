@@ -1,5 +1,17 @@
-package com.gaoyuan.mr.flowsum;
+package com.gaoyuan.mr.flowsum.partition;
 
+/**
+ * 功能描述:
+ *
+ * @author yaoyizhou
+ * @date 2020/1/30 15:09
+ * @desc
+ */
+
+import com.gaoyuan.mr.flowsum.FlowBean;
+import com.gaoyuan.mr.flowsum.FlowCountMapper;
+import com.gaoyuan.mr.flowsum.FlowCountReducer;
+import com.gaoyuan.mr.flowsum.FlowsumDriver;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -9,41 +21,39 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-/**
- * 功能描述:
- *
- * @author yaoyizhou
- * @date 2020/1/28 21:27
- * @desc
- */
-public class FlowsumDriver {
+public class FlowSumDriver {
 
     public static void main(String[] args) throws IllegalArgumentException, IOException, ClassNotFoundException, InterruptedException {
 
-
         // 输入输出路径需要根据自己电脑上实际的输入输出路径设置
-        args = new String[] { "e:/bigData/inputflow", "e:/bigData/outflow" };
+        args = new String[]{"e:/bigData/phone", "e:/bigData/phoneout"};
 
         // 1 获取配置信息，或者job对象实例
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
 
-        // 6 指定本程序的jar包所在的本地路径
+        // 2 指定本程序的jar包所在的本地路径
         job.setJarByClass(FlowsumDriver.class);
 
-        // 2 指定本业务job要使用的mapper/Reducer业务类
+        // 3 指定本业务job要使用的mapper/Reducer业务类
         job.setMapperClass(FlowCountMapper.class);
         job.setReducerClass(FlowCountReducer.class);
 
-        // 3 指定mapper输出数据的kv类型
+        // 4 指定mapper输出数据的kv类型
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(FlowBean.class);
 
-        // 4 指定最终输出的数据的kv类型
+        // 5 指定最终输出的数据的kv类型
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
 
-        // 5 指定job的输入原始文件所在目录
+        // 8 指定自定义数据分区
+        job.setPartitionerClass(ProvincePartitioner.class);
+
+        // 9 同时指定相应数量的reduce task
+        job.setNumReduceTasks(5);
+
+        // 6 指定job的输入原始文件所在目录
         FileInputFormat.setInputPaths(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
