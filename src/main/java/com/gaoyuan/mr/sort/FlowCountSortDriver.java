@@ -20,7 +20,7 @@ public class FlowCountSortDriver {
     public static void main(String[] args) throws ClassNotFoundException, IOException, InterruptedException {
 
         // 输入输出路径需要根据自己电脑上实际的输入输出路径设置
-        args = new String[]{"e:/output1","e:/output2"};
+        args = new String[]{"e:/bigData/phone1","e:/bigData/outputphone2"};
 
         // 1 获取配置信息，或者job对象实例
         Configuration configuration = new Configuration();
