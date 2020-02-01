@@ -21,7 +21,7 @@ public class WordcountDriver {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 
-        args=new String[]{"E:/bigData/input","E:/bigData/output6"};
+        args=new String[]{"E:/bigData/input","E:/bigData/output8"};
 
         // 1 获取配置信息以及封装任务
         Configuration configuration = new Configuration();
@@ -43,6 +43,8 @@ public class WordcountDriver {
         job.setOutputValueClass(IntWritable.class);
 
         job.setNumReduceTasks(2);
+
+        job.setCombinerClass(WordcountCombiner.class);
 
         // 6 设置输入和输出路径
         FileInputFormat.setInputPaths(job, new Path(args[0]));
