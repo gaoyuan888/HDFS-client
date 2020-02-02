@@ -20,9 +20,9 @@ public class TableDriver {
     public static void main(String[] args) throws Exception {
 
         // 0 根据自己电脑路径重新配置
-        args = new String[]{"e:/bigData/table","e:/bigData/outputtable"};
+        args = new String[]{"e:/bigData/table","e:/bigData/outputtable1"};
 
-// 1 获取配置信息，或者job对象实例
+        // 1 获取配置信息，或者job对象实例
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
 
